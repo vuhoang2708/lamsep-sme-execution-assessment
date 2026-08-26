@@ -258,6 +258,7 @@ export function App() {
           profile={profile}
           onClose={() => setShowPDFPreview(false)}
           onDownloadPDF={handleDownloadPDF}
+          onUpdateProfile={handleSaveProfile}
           isGeneratingPDF={isGeneratingPDF}
         />
       )}

@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SurveyAssessmentResult, OnboardingProfile } from '../types/survey';
 import { HexagonRadarChart } from './HexagonRadarChart';
 import { KUBA_STAGES_DATA } from '../data/kubaMatrix';
+import { submitLeadData } from '../utils/leadCapture';
+import { Mail, Phone, Download, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 interface PDFExportViewProps {
   assessment: SurveyAssessmentResult;
   profile: OnboardingProfile | null;
   onClose: () => void;
   onDownloadPDF: () => void;
+  onUpdateProfile?: (updatedProfile: OnboardingProfile) => void;
   isGeneratingPDF: boolean;
 }
 
@@ -16,35 +19,153 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
   profile,
   onClose,
   onDownloadPDF,
+  onUpdateProfile,
   isGeneratingPDF,
 }) => {
   const { overallPercent, overallRawScore, maturityLevel, orderedPillarResults, bottleneckPillar, bottleneckCluster } = assessment;
   const kubaUnderstand = KUBA_STAGES_DATA[2];
 
+  const [email, setEmail] = useState<string>(profile?.email || '');
+  const [phone, setPhone] = useState<string>(profile?.phone || '');
+  const [consultationConsent, setConsultationConsent] = useState<boolean>(true);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>('');
+
+  const isValidEmail = (str: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str.trim());
+
+  const handleDownloadWithLead = async () => {
+    if (!email.trim() || !isValidEmail(email)) {
+      setErrorMsg('Vui lòng nhập địa chỉ Email hợp lệ để nhận bản báo cáo đầy đủ.');
+      return;
+    }
+
+    setErrorMsg('');
+    setIsSubmitted(true);
+
+    const updatedProfile: OnboardingProfile = {
+      ...(profile || {
+        fullName: 'Doanh chủ SME',
+        role: 'CEO / Quản lý',
+        department: 'Ban Điều Hành',
+        experienceYears: '3 - 5 năm',
+        gender: 'Nam',
+        companyName: 'Doanh nghiệp SME',
+        industry: 'Đa ngành',
+        companySize: '20 - 50 nhân sự',
+        establishedYears: '3 - 5 năm',
+        annualRevenue: '10 - 50 tỷ VNĐ',
+        consent: true,
+      }),
+      email: email.trim(),
+      phone: phone.trim(),
+    };
+
+    if (onUpdateProfile) {
+      onUpdateProfile(updatedProfile);
+    }
+
+    // Submit lead in background
+    await submitLeadData(updatedProfile, assessment, email.trim(), phone.trim());
+
+    // Trigger PDF download
+    onDownloadPDF();
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-start p-4 overflow-y-auto">
-      {/* Action Bar */}
-      <div className="sticky top-4 z-50 bg-slate-900 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center justify-between gap-4 max-w-4xl w-full border border-slate-700 mb-6">
-        <div>
-          <h3 className="font-bold text-sm">Xem Trước & Xuất Báo Cáo Tư Vấn (A4 PDF)</h3>
-          <p className="text-[11px] text-slate-400">Sinh file PDF trực tiếp trên trình duyệt (Zero External Server Egress)</p>
-        </div>
-        <div className="flex items-center gap-3">
+      {/* Top Action & Email Capture Header */}
+      <div className="sticky top-4 z-50 bg-slate-900 text-white p-5 rounded-2xl shadow-2xl max-w-4xl w-full border border-slate-700 mb-6 space-y-4">
+        <div className="flex items-center justify-between gap-4 border-b border-slate-800 pb-3">
+          <div>
+            <h3 className="font-bold text-base flex items-center gap-2 text-blue-400">
+              <Download className="w-5 h-5" />
+              Nhận & Tải Báo Cáo Chẩn Đoán Năng Lực Thực Thi A4
+            </h3>
+            <p className="text-xs text-slate-400">
+              Báo cáo bao gồm: Biểu đồ Radar 6 cạnh, Bảng điểm 60 câu, Phân tích Điểm nghẽn Liebig & Lộ trình KUBA® 90 ngày
+            </p>
+          </div>
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+            className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
           >
             Đóng lại
           </button>
-          <button
-            type="button"
-            onClick={onDownloadPDF}
-            disabled={isGeneratingPDF}
-            className="px-6 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-md disabled:opacity-50 transition-colors flex items-center gap-2"
-          >
-            {isGeneratingPDF ? 'Đang xuất PDF...' : 'Tải File PDF A4'}
-          </button>
+        </div>
+
+        {/* Email & Phone Input Form */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+          <div className="md:col-span-5 space-y-1">
+            <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+              <Mail className="w-3.5 h-3.5 text-blue-400" />
+              Email nhận báo cáo chi tiết <span className="text-red-400">*</span>
+            </label>
+            <input
+              type="email"
+              placeholder="VD: ceo@congty.com"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (errorMsg) setErrorMsg('');
+              }}
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
+          </div>
+
+          <div className="md:col-span-4 space-y-1">
+            <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+              <Phone className="w-3.5 h-3.5 text-emerald-400" />
+              Số điện thoại / Zalo (nhận tư vấn)
+            </label>
+            <input
+              type="tel"
+              placeholder="VD: 0912 345 678"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
+          </div>
+
+          <div className="md:col-span-3">
+            <button
+              type="button"
+              onClick={handleDownloadWithLead}
+              disabled={isGeneratingPDF}
+              className="w-full py-2 px-4 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+            >
+              {isGeneratingPDF ? (
+                'Đang tạo file PDF...'
+              ) : isSubmitted ? (
+                <>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-300" /> Tải Lại PDF
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" /> Tải Báo Cáo PDF A4
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {errorMsg && (
+          <p className="text-xs text-red-400 font-medium">⚠️ {errorMsg}</p>
+        )}
+
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] text-slate-400">
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={consultationConsent}
+              onChange={(e) => setConsultationConsent(e.target.checked)}
+              className="rounded bg-slate-800 border-slate-700 text-blue-600 focus:ring-0 w-3.5 h-3.5"
+            />
+            <span>Đồng ý nhận bản phân tích chuyên sâu & tư vấn giải pháp từ chuyên gia Làm Sếp (Kenmei)</span>
+          </label>
+          <span className="flex items-center gap-1 text-slate-500">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Bảo mật thông tin tuyệt đối
+          </span>
         </div>
       </div>
 
@@ -75,6 +196,7 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
             <div>
               <span className="text-slate-500 block">Người khảo sát:</span>
               <strong className="text-slate-800">{profile.fullName || 'Doanh chủ SME'}</strong>
+              {email && <span className="block text-[10px] text-slate-500 truncate">{email}</span>}
             </div>
             <div>
               <span className="text-slate-500 block">Chức vụ / Bộ phận:</span>

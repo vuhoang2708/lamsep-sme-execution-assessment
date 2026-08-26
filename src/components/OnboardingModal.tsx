@@ -79,6 +79,17 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
               </div>
 
               <div>
+                <label className="block text-slate-700 font-medium mb-1">Email (để nhận báo cáo PDF)</label>
+                <input
+                  type="email"
+                  placeholder="VD: ceo@congty.com"
+                  value={profile.email || ''}
+                  onChange={e => setProfile({ ...profile, email: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
                 <label className="block text-slate-700 font-medium mb-1">Chức vụ trong tổ chức *</label>
                 <select
                   value={profile.role}

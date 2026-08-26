@@ -122,8 +122,9 @@ def run_uat():
         page.wait_for_selector('#pdf-report-content')
         page.screenshot(path=os.path.join(screenshot_dir, "desktop-1440x900-pdf-preview.png"), full_page=True)
         pdf_path = os.path.join(artifact_dir, "sample_exported_report.pdf")
+        page.fill('input[placeholder="VD: ceo@congty.com"]', "ceo@lamsep.vn")
         with page.expect_download(timeout=15000) as download_info:
-            page.get_by_role("button", name="Tải File PDF A4", exact=True).click()
+            page.locator('button:has-text("Tải Báo Cáo PDF A4")').click()
         download_info.value.save_as(pdf_path)
         assert os.path.getsize(pdf_path) > 0
         print("Saved: uat_desktop_04_pdf_preview.png")

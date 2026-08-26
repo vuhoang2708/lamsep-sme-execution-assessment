@@ -18,6 +18,8 @@ export interface SurveyResponseMap {
 
 export interface OnboardingProfile {
   fullName: string;
+  email?: string;
+  phone?: string;
   role: string;
   department: string;
   experienceYears: string;

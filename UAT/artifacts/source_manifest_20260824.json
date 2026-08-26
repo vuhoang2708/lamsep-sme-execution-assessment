@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T11:24:30.282323+00:00",
+  "generated_at": "2026-08-26T08:58:09.445804+00:00",
   "workspace": "C:\\Users\\vu.hoang\\.gemini\\antigravity\\scratch\\Lam-Sep",
   "contract_version": "v2.1",
   "master_plan_version": "v2.1",
@@ -20,8 +20,8 @@
       "claim_level": "VERIFIED"
     },
     "src/App.tsx": {
-      "sha256": "8A3BD501061347DFFA6DA3F0D9BCDCECCAE149E143929130EA1908FAB27AEC20",
-      "bytes": 11081,
+      "sha256": "24342464052C97CA6290CBB22BE17F1DF6F2BE93D6CE197C6725A9111AAB34DF",
+      "bytes": 11127,
       "claim_level": "VERIFIED"
     },
     "src/data/survey60Questions.ts": {
@@ -30,8 +30,8 @@
       "claim_level": "VERIFIED"
     },
     "src/types/survey.ts": {
-      "sha256": "074BFC1300D20CCEAE03B70CB86D6CFACB03B1BDC3F0C3AD95055D92648D3954",
-      "bytes": 1774,
+      "sha256": "030140C1D0BF4AF6D6F00E0DE31FF4A1020CECABB01F2B83AD91D5F0A473A3A6",
+      "bytes": 1810,
       "claim_level": "VERIFIED"
     },
     "src/types/kuba.ts": {
@@ -50,8 +50,8 @@
       "claim_level": "VERIFIED"
     },
     "src/components/OnboardingModal.tsx": {
-      "sha256": "A814209B91885E163B2E985EDDD50455569754A27AC1654920C5CFFEF474BA6E",
-      "bytes": 12279,
+      "sha256": "29616ED83796C3687199DA5D06400ED0A7D1D3DEAB2E87647D237FE7413DD89E",
+      "bytes": 12825,
       "claim_level": "VERIFIED"
     },
     "src/components/QuestionSection.tsx": {
@@ -65,8 +65,8 @@
       "claim_level": "VERIFIED"
     },
     "src/components/PDFExportView.tsx": {
-      "sha256": "6D863530D8D62425F21793FE1EFD89C426C7DF94C6005D938AB08A5C18D1FC84",
-      "bytes": 9723,
+      "sha256": "A85F9C0B79B6DEBFE648C7999A9121173AAECA8DF5BACEBD54B9D059EF483032",
+      "bytes": 14864,
       "claim_level": "VERIFIED"
     },
     "src/components/HexagonRadarChart.tsx": {
@@ -110,12 +110,12 @@
       "claim_level": "VERIFIED"
     },
     "run_browser_uat.py": {
-      "sha256": "2B26E28F1E58F140074B7CD1E4302D771FD3A1DAE397147F4ACE0B1158E5128C",
-      "bytes": 12651,
+      "sha256": "625958614CCC988612CE73BEEB0807F6177415263679CE588DA8F668587C71D1",
+      "bytes": 12722,
       "claim_level": "VERIFIED"
     },
     "UAT/uat_report_phase2_mvp.md": {
-      "sha256": "A82A85CE09C22227AB819CF98CD62CBB21739ED5AE17BCE43610CF13C8A60B61",
+      "sha256": "931EF718D67F8E2F469DA10D0117222DFE8C9BF2821FB12F6001C2F0BD093885",
       "bytes": 1315,
       "claim_level": "VERIFIED"
     },
@@ -130,12 +130,12 @@
       "claim_level": "UNVERIFIED"
     },
     "UAT/artifacts/sample_exported_report.pdf": {
-      "sha256": "E4B2B880096C81F5AB97BEBC3A09E1E75360D261D5D93939E5BFA27200BF454E",
+      "sha256": "F98E15C9E313B2F4CB92E5D261513D77229F43D89BB47D098317CBBFBC659337",
       "bytes": 17257798,
       "claim_level": "VERIFIED"
     },
     "UAT/artifacts/network_evidence.json": {
-      "sha256": "6E26221A5E0DEBBD12E67FFDEA3B8F0E4CB455C4EB1382EA6867E33EEEDA6E54",
+      "sha256": "21591DF5D2467DCDF3D0304C023F1FA5089B747B773CF49D8F1A5C7A6F99E3E7",
       "bytes": 866,
       "claim_level": "VERIFIED"
     }
