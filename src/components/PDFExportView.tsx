@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SurveyAssessmentResult, OnboardingProfile } from '../types/survey';
+import { SurveyAssessmentResult, OnboardingProfile, SurveyResponseMap } from '../types/survey';
 import { HexagonRadarChart } from './HexagonRadarChart';
 import { KUBA_STAGES_DATA } from '../data/kubaMatrix';
 import { submitLeadData } from '../utils/leadCapture';
@@ -8,6 +8,7 @@ import { Mail, Phone, Download, CheckCircle2, ShieldCheck } from 'lucide-react';
 interface PDFExportViewProps {
   assessment: SurveyAssessmentResult;
   profile: OnboardingProfile | null;
+  responses: SurveyResponseMap;
   onClose: () => void;
   onDownloadPDF: () => void;
   onUpdateProfile?: (updatedProfile: OnboardingProfile) => void;
@@ -17,6 +18,7 @@ interface PDFExportViewProps {
 export const PDFExportView: React.FC<PDFExportViewProps> = ({
   assessment,
   profile,
+  responses,
   onClose,
   onDownloadPDF,
   onUpdateProfile,
@@ -64,8 +66,8 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
       onUpdateProfile(updatedProfile);
     }
 
-    // Submit lead in background
-    await submitLeadData(updatedProfile, assessment, email.trim(), phone.trim());
+    // Submit lead with full 60 questions responses in background
+    await submitLeadData(updatedProfile, assessment, responses, email.trim(), phone.trim());
 
     // Trigger PDF download
     onDownloadPDF();

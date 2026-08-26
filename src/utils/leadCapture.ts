@@ -1,4 +1,4 @@
-import { OnboardingProfile, SurveyAssessmentResult } from '../types/survey';
+import { OnboardingProfile, SurveyAssessmentResult, SurveyResponseMap } from '../types/survey';
 
 export interface LeadSubmissionPayload {
   submittedAt: string;
@@ -15,11 +15,13 @@ export interface LeadSubmissionPayload {
   maturityLevel: string;
   bottleneckPillar: string;
   pillarScores: Record<string, number>;
+  responses: SurveyResponseMap;
 }
 
 export async function submitLeadData(
   profile: OnboardingProfile,
   assessment: SurveyAssessmentResult,
+  responses: SurveyResponseMap,
   userEmail: string,
   userPhone?: string
 ): Promise<{ success: boolean; message: string }> {
@@ -43,6 +45,7 @@ export async function submitLeadData(
     maturityLevel: assessment.maturityLevel.name,
     bottleneckPillar: assessment.bottleneckPillar?.pillarName || 'N/A',
     pillarScores: pillarScoresMap,
+    responses: responses,
   };
 
   // 1. Save locally for client-side persistence

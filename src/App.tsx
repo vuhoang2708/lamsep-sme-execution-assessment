@@ -256,6 +256,7 @@ export function App() {
         <PDFExportView
           assessment={assessment}
           profile={profile}
+          responses={responses}
           onClose={() => setShowPDFPreview(false)}
           onDownloadPDF={handleDownloadPDF}
           onUpdateProfile={handleSaveProfile}
