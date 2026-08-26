@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-08-24T11:24:30.282323+00:00",
+  "workspace": "C:\\Users\\vu.hoang\\.gemini\\antigravity\\scratch\\Lam-Sep",
+  "contract_version": "v2.1",
+  "master_plan_version": "v2.1",
+  "files": {
+    "SURVEY_DESIGN_CONTRACT_V2.md": {
+      "sha256": "CA355746DC0461D1C9D26B692962151320670C76227F7969591ACE634B3B9223",
+      "bytes": 26654,
+      "claim_level": "VERIFIED"
+    },
+    "MASTER_PLAN_LAMSEP_SME_SURVEY_SPA_V2.md": {
+      "sha256": "3D8D98416823FF8348FC7E24DCC0E2D156AE73A97C2A748C42D03AF7FCC24A08",
+      "bytes": 10178,
+      "claim_level": "VERIFIED"
+    },
+    "IMPLEMENTATION_PLAN_LAMSEP_V2_20260824.md": {
+      "sha256": "B63D0ED5AB67A515F62CFFE823C88F799CD09EC61DF539EB59A417FC2A366300",
+      "bytes": 5136,
+      "claim_level": "VERIFIED"
+    },
+    "src/App.tsx": {
+      "sha256": "8A3BD501061347DFFA6DA3F0D9BCDCECCAE149E143929130EA1908FAB27AEC20",
+      "bytes": 11081,
+      "claim_level": "VERIFIED"
+    },
+    "src/data/survey60Questions.ts": {
+      "sha256": "C4BB7A6D6E0B97A103BB2B336493607CD6AB1553BABF1B826988397F9B0D32FC",
+      "bytes": 25912,
+      "claim_level": "VERIFIED"
+    },
+    "src/types/survey.ts": {
+      "sha256": "074BFC1300D20CCEAE03B70CB86D6CFACB03B1BDC3F0C3AD95055D92648D3954",
+      "bytes": 1774,
+      "claim_level": "VERIFIED"
+    },
+    "src/types/kuba.ts": {
+      "sha256": "637B39A76FC0B2807758F6422A5C95CD24D12AAE8482CEE7403B19D3A659F419",
+      "bytes": 477,
+      "claim_level": "VERIFIED"
+    },
+    "src/engine/scoringEngine.ts": {
+      "sha256": "E5A2E855E2FE59356161EB98214978489B8447DFE7294E435D1992B288CC117A",
+      "bytes": 6782,
+      "claim_level": "VERIFIED"
+    },
+    "src/engine/bottleneck.ts": {
+      "sha256": "D8E1C7A5998CD983851BC5D68466BC9962FE3376A10FA1E4F965CB18BD75F529",
+      "bytes": 1387,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/OnboardingModal.tsx": {
+      "sha256": "A814209B91885E163B2E985EDDD50455569754A27AC1654920C5CFFEF474BA6E",
+      "bytes": 12279,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/QuestionSection.tsx": {
+      "sha256": "054BD4FA21FD537F08AA696A0CE253C4F7AEA252870768EE54C72F6EAAC48345",
+      "bytes": 6426,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/MaturityReport.tsx": {
+      "sha256": "0B4ED331A6538E5C927F01179270F51E8662BF85D513E0AC5ECE1BF0C1ED9114",
+      "bytes": 5392,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/PDFExportView.tsx": {
+      "sha256": "6D863530D8D62425F21793FE1EFD89C426C7DF94C6005D938AB08A5C18D1FC84",
+      "bytes": 9723,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/HexagonRadarChart.tsx": {
+      "sha256": "395E09862C382A91F5742F24AB4AD0ACE7C9D16334D0E59C04859B4F593EC240",
+      "bytes": 6931,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/BottleneckAlert.tsx": {
+      "sha256": "CA4C00B64BB658CA402A4A6466DD35F9223787691B177ED7D0C3D2F60F459D59",
+      "bytes": 4068,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/KUBAModule.tsx": {
+      "sha256": "6A171F74D0A7BDD7499C58983A344F046CC5923EC44CC239510710334536E765",
+      "bytes": 7000,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/Header.tsx": {
+      "sha256": "93B5C2858E444EF356CD6838923C306B17345941F56135F38F2E2BB27F51D1F9",
+      "bytes": 3744,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/ProgressBar.tsx": {
+      "sha256": "5D6291F648A6E5F16729B14375FCB93AA729409FE11097928CAF2FCD2AF7136E",
+      "bytes": 2670,
+      "claim_level": "VERIFIED"
+    },
+    "src/components/LikertButtonGroup.tsx": {
+      "sha256": "A9399DFC4B71CAC3D44D601E43A023171E13A1696B3DD403DCF504D9C307E624",
+      "bytes": 2288,
+      "claim_level": "VERIFIED"
+    },
+    "src/utils/storageHelper.ts": {
+      "sha256": "2D39C4E5468172D833EB2BB8C2EE6E9403C832AB277F7430451734F70E7AA37C",
+      "bytes": 2100,
+      "claim_level": "VERIFIED"
+    },
+    "src/utils/pdfGenerator.ts": {
+      "sha256": "C712C786455D187D790036E349B7114FE6794F56400865555405FA343CBCB57D",
+      "bytes": 1275,
+      "claim_level": "VERIFIED"
+    },
+    "run_browser_uat.py": {
+      "sha256": "2B26E28F1E58F140074B7CD1E4302D771FD3A1DAE397147F4ACE0B1158E5128C",
+      "bytes": 12651,
+      "claim_level": "VERIFIED"
+    },
+    "UAT/uat_report_phase2_mvp.md": {
+      "sha256": "A82A85CE09C22227AB819CF98CD62CBB21739ED5AE17BCE43610CF13C8A60B61",
+      "bytes": 1315,
+      "claim_level": "VERIFIED"
+    },
+    "UAT/artifacts/font_provenance.md": {
+      "sha256": "69024B44C7BF5FA248E4DDB5797996642D5075C22FC97A52564B2111CFCDB5E5",
+      "bytes": 683,
+      "claim_level": "UNVERIFIED"
+    },
+    "UAT/artifacts/pdf_inspection_20260824.md": {
+      "sha256": "C4B242637A7A4FAFA60E3C1EE2149AD0B1D6F5D38A5A0FAE3567CDFACC87789A",
+      "bytes": 2910,
+      "claim_level": "UNVERIFIED"
+    },
+    "UAT/artifacts/sample_exported_report.pdf": {
+      "sha256": "E4B2B880096C81F5AB97BEBC3A09E1E75360D261D5D93939E5BFA27200BF454E",
+      "bytes": 17257798,
+      "claim_level": "VERIFIED"
+    },
+    "UAT/artifacts/network_evidence.json": {
+      "sha256": "6E26221A5E0DEBBD12E67FFDEA3B8F0E4CB455C4EB1382EA6867E33EEEDA6E54",
+      "bytes": 866,
+      "claim_level": "VERIFIED"
+    }
+  }
+}
