@@ -1,0 +1,14 @@
+Em có một số góp ý: 
+1/ Khi làm hết 10 câu và chuyển sang Trụ khác, nó ko tự động nhảy lên đầu trang, mà dừng ở câu cuối cùng của trụ mới 
+2/ Trong bảng khảo sát, chỗ L6, chữ LAMSEP chình lại thành LamSep cho đồng bộ với logo
+3/ Trụ 6 (Hiệu suất), nếu ngay câu đầu tiên mà người trả lời là Cty không có mục tiêu kinh doanh 6-12 tháng, thì các câu hỏi sau trở nên vô nghĩa (khoá lại để người khảo sát không thể chọn). 
+4/ Nếu mỗi trụ chọn chưa đủ 10 câu thì trước khi đi tiếp sẽ nhắc nhở để quay lại chọn câu còn sót.
+5/ Bảng kết quả: - Bảng điểm 6 trụ cột thực thi, thay chữ "Raw" bằng chữ “Điểm” 
+6/ Trong phần lục giác, các chữ hiệu suất, vận hành, lãnh đạo, văn hoá bị mất chữ.
+Chỗ dấu tròn màu cam em chưa hiểu ý nghĩa của nó dưới 5%, trong khi kết quả là 37.5%
+7/ Báo cáo xuất ra (file PDF), gửi về mail bị lỗi, có đường màu đen che mất dòng chữ
+có đường màu đen che mất dòng chữ 
+8/ Test trên điện thoại thì phần thông tin bị mất khúc đầu là Họ và tên người khảo sát và thao tác không kéo lên được
+9/ Phần đề xuất sau khi có kết quả báo cáo thêm vào nội dung:
+Nếu Quý khách có bất kỳ thắc mắc gì về kết quả khảo sát, hoặc muốn chuyên gia đến khảo sát chi tiết, tư vấn trực tiếp tại Doanh nghiệp, hãy liên hệ với chúng tôi qua số điện thoại: 0913989172 (Mr. Duy).
+8/ Footer để Tên anh Vũ CC + LamSep Consulting Group

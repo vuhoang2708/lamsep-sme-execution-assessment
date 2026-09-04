@@ -1,20 +1,33 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-export async function exportReportToPDF(elementId: string, filename: string = 'LAMSEP_Bao_Cao_Thuc_Thi_SME.pdf'): Promise<void> {
+export async function exportReportToPDF(elementId: string, filename: string = 'LamSep_Bao_Cao_Thuc_Thi_SME.pdf'): Promise<void> {
   const element = document.getElementById(elementId);
   if (!element) {
     throw new Error(`Element with id "${elementId}" not found.`);
   }
 
-  // Use html2canvas to capture the element
+  // Use html2canvas to capture the element cleanly with zero offset
   const canvas = await html2canvas(element, {
     scale: 2, // High resolution
     useCORS: true,
     logging: false,
     backgroundColor: '#FFFFFF',
+    scrollX: 0,
+    scrollY: 0,
+    x: 0,
+    y: 0,
     windowWidth: element.scrollWidth,
     windowHeight: element.scrollHeight,
+    onclone: (clonedDoc) => {
+      const clonedEl = clonedDoc.getElementById(elementId);
+      if (clonedEl) {
+        clonedEl.style.boxShadow = 'none';
+        clonedEl.style.backdropFilter = 'none';
+        clonedEl.style.filter = 'none';
+        clonedEl.style.backgroundColor = '#FFFFFF';
+      }
+    },
   });
 
   const imgData = canvas.toDataURL('image/png');

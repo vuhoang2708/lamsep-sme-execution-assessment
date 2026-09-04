@@ -6,11 +6,13 @@ interface LikertButtonGroupProps {
   questionId: string;
   selectedScore: LikertScore | undefined;
   onSelectScore: (score: LikertScore) => void;
+  disabled?: boolean;
 }
 
 export const LikertButtonGroup: React.FC<LikertButtonGroupProps> = ({
   selectedScore,
   onSelectScore,
+  disabled = false,
 }) => {
   return (
     <div className="space-y-2 mt-3">
@@ -22,6 +24,7 @@ export const LikertButtonGroup: React.FC<LikertButtonGroupProps> = ({
             <button
               key={opt.score}
               type="button"
+              disabled={disabled}
               onClick={() => onSelectScore(opt.score as LikertScore)}
               className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
                 isSelected
@@ -48,6 +51,7 @@ export const LikertButtonGroup: React.FC<LikertButtonGroupProps> = ({
       <div className="flex justify-end pt-1">
         <button
           type="button"
+          disabled={disabled}
           onClick={() => onSelectScore(0)}
           className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
             selectedScore === 0

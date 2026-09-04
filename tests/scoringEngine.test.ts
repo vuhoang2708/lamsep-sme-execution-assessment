@@ -152,4 +152,19 @@ describe('LAMSEP Scoring Engine v2 (6-Pillars)', () => {
     expect(res.overallRawScore).toBeNull();
     expect(res.maturityLevel.levelId).toBe('LEVEL_4');
   });
+
+  it('TC-12: Pillar 6 branching logic (Q6.1 = 1 -> Q6.2-Q6.10 = 1)', () => {
+    const responses: SurveyResponseMap = {};
+    // Simulate auto-assigned 1 for all Pillar 6 questions
+    for (let o = 1; o <= 10; o++) {
+      responses[`Q6.${o}`] = 1;
+    }
+
+    const pillarScore = calculatePillarScore('performance', responses, SURVEY_60_QUESTIONS);
+    expect(pillarScore.totalValid).toBe(10);
+    expect(pillarScore.totalNA).toBe(0);
+    expect(pillarScore.rawSum).toBe(10);
+    expect(pillarScore.scorePercent).toBe(0.0);
+    expect(pillarScore.isInsufficientData).toBe(false);
+  });
 });

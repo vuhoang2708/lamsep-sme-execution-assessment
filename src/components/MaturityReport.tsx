@@ -32,7 +32,7 @@ export const MaturityReport: React.FC<MaturityReportProps> = ({ assessment }) =>
             </div>
             <div className="h-10 w-px bg-slate-200" />
             <div className="text-left">
-              <span className="text-xs text-slate-500 block">Điểm Raw (chỉ khi đủ 60 câu số)</span>
+              <span className="text-xs text-slate-500 block">Điểm Đạt Được (chỉ khi đủ 60 câu số)</span>
               <span className="text-xl font-bold text-slate-800">
                 {overallRawScore === null ? 'N/A — có N/A hoặc câu chưa trả lời' : `${overallRawScore} / 300`}
               </span>
@@ -90,7 +90,7 @@ export const MaturityReport: React.FC<MaturityReportProps> = ({ assessment }) =>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-slate-500 text-[11px]">
-                      Raw: {p.rawSum}/{p.totalValid * 5} ({p.totalValid} câu hợp lệ{p.totalNA > 0 ? `, ${p.totalNA} N/A` : ''})
+                      Điểm: {p.rawSum}/{p.totalValid * 5} ({p.totalValid} câu hợp lệ{p.totalNA > 0 ? `, ${p.totalNA} N/A` : ''})
                     </span>
                     <span className="font-bold text-slate-900 w-12 text-right">
                       {p.isInsufficientData ? 'N/A' : `${p.scorePercent}%`}

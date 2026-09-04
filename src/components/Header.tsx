@@ -21,13 +21,15 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-6xl mx-auto px-4 py-3 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         {/* Brand & Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-lg tracking-wider text-white shadow-inner">
-            L6
-          </div>
+          <img 
+            src="/logo-lamsep.jpg" 
+            alt="LamSep Logo" 
+            className="w-10 h-10 rounded-xl object-contain bg-white p-0.5 border border-slate-700 shadow-sm flex-shrink-0" 
+          />
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg tracking-tight text-white sm:text-xl">
-                LAMSEP <span className="text-blue-400 font-medium text-sm sm:text-base">— Khảo sát Thực thi SME</span>
+                LamSep <span className="text-blue-400 font-medium text-sm sm:text-base">— Khảo sát Thực thi SME</span>
               </h1>
               <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
                 <ShieldCheck className="w-3.5 h-3.5" /> Client-Only Privacy

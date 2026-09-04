@@ -178,16 +178,23 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
       >
         {/* Header Branding */}
         <div className="border-b-2 border-slate-900 pb-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight">
-              BÁO CÁO CHẨN ĐOÁN NĂNG LỰC THỰC THI SME
-            </h1>
-            <p className="text-xs text-slate-600 font-medium mt-1">
-              Khung Quản trị PSO (People - Strategy - Operations) & Khung Chuyển đổi KUBA®
-            </p>
+          <div className="flex items-center gap-3">
+            <img 
+              src="/logo-lamsep.jpg" 
+              alt="LamSep Logo" 
+              className="w-12 h-12 rounded-xl object-contain bg-white p-1 border border-slate-200 shadow-sm flex-shrink-0" 
+            />
+            <div>
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                BÁO CÁO CHẨN ĐOÁN NĂNG LỰC THỰC THI SME
+              </h1>
+              <p className="text-xs text-slate-600 font-medium mt-1">
+                Khung Quản trị PSO (People - Strategy - Operations) & Khung Chuyển đổi KUBA®
+              </p>
+            </div>
           </div>
           <div className="text-right text-xs text-slate-500">
-            <span className="font-bold text-slate-800 block">LAMSEP x Culture Code x DHM8</span>
+            <span className="font-bold text-slate-800 block">LamSep Consulting Group</span>
             <span>Ngày đánh giá: {new Date().toLocaleDateString('vi-VN')}</span>
           </div>
         </div>
@@ -239,7 +246,7 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
               <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-3xl font-black text-blue-600">{overallPercent}%</span>
                 <span className="text-xs text-slate-500">
-                  ({overallRawScore === null ? 'Raw: N/A — không quy đổi khi có N/A' : `Raw: ${overallRawScore}/300 điểm`})
+                  ({overallRawScore === null ? 'Điểm: N/A — không quy đổi khi có N/A' : `Điểm đạt được: ${overallRawScore}/300 điểm`})
                 </span>
               </div>
               <p className="text-xs text-slate-700 mt-2 leading-relaxed">
@@ -308,10 +315,20 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
           </div>
         </div>
 
+        {/* Section 4: Direct Consultation Hotline */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 p-4 rounded-xl text-xs space-y-1.5">
+          <h4 className="font-bold text-blue-950 text-sm flex items-center gap-2">
+            📞 Khảo Sát Chi Tiết & Tư Vấn Trực Tiếp Tại Doanh Nghiệp
+          </h4>
+          <p className="text-slate-700 leading-relaxed">
+            Nếu Quý khách có bất kỳ thắc mắc gì về kết quả khảo sát, hoặc muốn chuyên gia đến khảo sát chi tiết, tư vấn trực tiếp tại Doanh nghiệp, hãy liên hệ với chúng tôi qua số điện thoại: <strong className="text-blue-700 text-sm">0913989172 (Mr. Duy)</strong>.
+          </p>
+        </div>
+
         {/* Footer */}
         <div className="border-t border-slate-200 pt-3 flex items-center justify-between text-[10px] text-slate-400">
-          <span>Khảo sát Thực thi SME LAMSEP — Single-Page Application Client-Only</span>
-          <span>Trang 1 / 1 — Báo cáo xuất tự động</span>
+          <span>© 2026 Hoàng Vũ & LamSep Consulting Group. All rights reserved.</span>
+          <span>Báo cáo chẩn đoán năng lực thực thi SME LamSep</span>
         </div>
       </div>
     </div>

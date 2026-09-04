@@ -13,7 +13,7 @@ import { BottleneckAlert } from './components/BottleneckAlert';
 import { KUBAModule } from './components/KUBAModule';
 import { OnboardingModal } from './components/OnboardingModal';
 import { PDFExportView } from './components/PDFExportView';
-import { ArrowLeft, FileDown, CheckCircle, UserCheck } from 'lucide-react';
+import { ArrowLeft, FileDown, CheckCircle, UserCheck, PhoneCall } from 'lucide-react';
 
 export function App() {
   const [storageOptIn, setStorageOptIn] = useState<boolean>(() => StorageHelper.isOptIn());
@@ -88,7 +88,7 @@ export function App() {
     }
     try {
       setIsGeneratingPDF(true);
-      await exportReportToPDF('pdf-report-content', `LAMSEP_Bao_Cao_Thuc_Thi_${profile?.companyName ? profile.companyName.replace(/\s+/g, '_') : 'SME'}.pdf`);
+      await exportReportToPDF('pdf-report-content', `LamSep_Bao_Cao_Thuc_Thi_${profile?.companyName ? profile.companyName.replace(/\s+/g, '_') : 'SME'}.pdf`);
     } catch (err) {
       console.error('PDF generation error:', err);
       alert('Không thể tạo file PDF. Bạn có thể sử dụng tính năng In (Ctrl+P) của trình duyệt.');
@@ -223,6 +223,30 @@ export function App() {
                 bottleneckName={assessment.bottleneckPillar.pillarName}
               />
             )}
+
+            {/* Hotline Tư Vấn Trực Tiếp Mr. Duy */}
+            <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-blue-950 rounded-2xl p-6 text-white shadow-md border border-blue-800/40 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold">
+                  <PhoneCall className="w-3.5 h-3.5" /> Hotline Chuyên Gia Hỗ Trợ
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold">
+                  Cần Chuyên Gia Khảo Sát Chi Tiết & Tư Vấn Trực Tiếp Tại Doanh Nghiệp?
+                </h3>
+                <p className="text-xs sm:text-sm text-blue-100/80 max-w-2xl leading-relaxed">
+                  Nếu Quý khách có bất kỳ thắc mắc gì về kết quả khảo sát, hoặc muốn chuyên gia đến khảo sát chi tiết và tư vấn trực tiếp tại Doanh nghiệp, hãy liên hệ ngay với chúng tôi.
+                </p>
+              </div>
+
+              <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href="tel:0913989172"
+                  className="px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md transition-colors flex items-center gap-2"
+                >
+                  <PhoneCall className="w-4 h-4" /> 0913989172 (Mr. Duy)
+                </a>
+              </div>
+            </div>
           </div>
         )}
       </main>
@@ -232,10 +256,10 @@ export function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
             <p className="font-semibold text-slate-300">
-              LAMSEP — Bộ Công Cụ Tư Vấn & Khảo Sát Thực Thi Xuất Sắc Doanh Nghiệp SME
+              LamSep — Bộ Công Cụ Tư Vấn & Khảo Sát Thực Thi Xuất Sắc Doanh Nghiệp SME
             </p>
             <p className="text-[11px] text-slate-500 mt-0.5">
-              Phát triển bởi Culture Code & DHM8 / Chuyên gia Huỳnh Trọng Nghĩa (Kenmei) & Vũ Hoàng
+              © 2026 Hoàng Vũ & LamSep Consulting Group. All rights reserved.
             </p>
           </div>
           <div className="text-[11px] text-slate-500">

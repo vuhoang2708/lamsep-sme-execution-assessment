@@ -12,11 +12,13 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
   pillarResults,
   bottleneckPillarId,
   bottleneckClusterIds = [],
-  size = 400,
 }) => {
-  const cx = size / 2;
-  const cy = size / 2;
-  const radius = (size / 2) * 0.70; // 70% radius for label clearance
+  // Use a spacious coordinate system to prevent any label clipping
+  const svgWidth = 480;
+  const svgHeight = 420;
+  const cx = svgWidth / 2; // 240
+  const cy = svgHeight / 2; // 210
+  const radius = 125; // Balanced radius leaving ample room for text labels
 
   const numAxes = 6;
   const angleStep = (Math.PI * 2) / numAxes;
@@ -60,21 +62,29 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
   const dataPolygonPath = dataPoints.map(p => `${p.x},${p.y}`).join(' ');
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-white rounded-2xl border border-slate-200 shadow-sm">
-      <div className="relative" style={{ width: size, height: size, maxWidth: '100%' }}>
+    <div className="flex flex-col items-center justify-center p-3 sm:p-5 bg-white rounded-2xl border border-slate-200 shadow-sm w-full">
+      <div className="relative w-full max-w-[460px] aspect-[48/42]">
         <svg
-          viewBox={`0 0 ${size} ${size}`}
+          viewBox={`0 0 ${svgWidth} ${svgHeight}`}
           className="w-full h-full overflow-visible"
         >
-          {/* Concentric Grid Hexagons */}
-          {gridPolygons.map((points, idx) => (
+          {/* Subtle Outer Boundary Hexagon */}
+          <polygon
+            points={gridPolygons[gridPolygons.length - 1]}
+            fill="#F8FAFC"
+            stroke="#CBD5E1"
+            strokeWidth="1.5"
+          />
+
+          {/* Concentric Grid Lines (20%, 40%, 60%, 80%) */}
+          {gridPolygons.slice(0, -1).map((points, idx) => (
             <polygon
               key={`grid-${idx}`}
               points={points}
-              fill={idx % 2 === 0 ? '#F8FAFC' : '#FFFFFF'}
-              stroke="#CBD5E1"
+              fill="none"
+              stroke="#E2E8F0"
               strokeWidth="1"
-              strokeDasharray={idx < 4 ? '3 3' : 'none'}
+              strokeDasharray={idx === 1 ? '3 3' : 'none'}
             />
           ))}
 
@@ -106,7 +116,7 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
                 y1={cy}
                 x2={x}
                 y2={y}
-                stroke="#94A3B8"
+                stroke="#CBD5E1"
                 strokeWidth="1.2"
               />
             );
@@ -149,8 +159,8 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
 
             // Determine text anchor based on position
             let textAnchor: 'middle' | 'end' | 'start' = 'middle';
-            if (x < cx - 10) textAnchor = 'end';
-            else if (x > cx + 10) textAnchor = 'start';
+            if (x < cx - 15) textAnchor = 'end';
+            else if (x > cx + 15) textAnchor = 'start';
 
             const scoreText = p.isInsufficientData ? 'Thiếu data' : `${p.scorePercent}%`;
 
@@ -159,7 +169,7 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
                 <text
                   textAnchor={textAnchor}
                   fill={isBottleneck ? '#DC2626' : isCluster ? '#B45309' : '#1E293B'}
-                  fontSize="11"
+                  fontSize="12"
                   fontWeight="700"
                   fontFamily="sans-serif"
                 >
@@ -167,9 +177,9 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
                 </text>
                 <text
                   textAnchor={textAnchor}
-                  y="14"
+                  y="15"
                   fill={isBottleneck ? '#DC2626' : isCluster ? '#D97706' : '#2563EB'}
-                  fontSize="10"
+                  fontSize="11"
                   fontWeight="600"
                   fontFamily="sans-serif"
                 >
@@ -182,7 +192,7 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
       </div>
 
       {/* Chart Legend */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mt-6 text-xs text-slate-600 border-t border-slate-100 pt-3">
+      <div className="flex flex-wrap items-center justify-center gap-4 mt-5 text-xs text-slate-600 border-t border-slate-100 pt-3 w-full">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-full bg-blue-600 inline-block" />
           <span>Điểm năng lực (% đạt được)</span>
@@ -194,7 +204,7 @@ export const HexagonRadarChart: React.FC<HexagonRadarChartProps> = ({
         {bottleneckClusterIds.length > 1 && (
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
-            <span className="font-semibold text-amber-700">Nhóm suýt soát (≤ 5%)</span>
+            <span className="font-semibold text-amber-700">Cùng nhóm nghẽn (Chênh lệch dưới 5% so với điểm thấp nhất)</span>
           </div>
         )}
       </div>
