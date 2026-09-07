@@ -256,7 +256,7 @@ export function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
             <p className="font-semibold text-slate-300">
-              LamSep — Bộ Công Cụ Tư Vấn & Khảo Sát Thực Thi Xuất Sắc Doanh Nghiệp SME
+              LamSep — Bộ Công Cụ Đánh Giá Năng Lực Thực Thi SME
             </p>
             <p className="text-[11px] text-slate-500 mt-0.5">
               © 2026 Hoàng Vũ & LamSep Consulting Group. All rights reserved.

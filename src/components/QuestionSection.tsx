@@ -30,9 +30,12 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
 
   const [showMissingWarning, setShowMissingWarning] = useState<boolean>(false);
 
-  // Clear missing warning when switching pillars
+  // Clear missing warning and unconditionally scroll to top when switching pillars
   useEffect(() => {
     setShowMissingWarning(false);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [currentPillarId]);
 
   const answeredInPillar = pillarQuestions.filter(q => responses[q.id] !== undefined).length;

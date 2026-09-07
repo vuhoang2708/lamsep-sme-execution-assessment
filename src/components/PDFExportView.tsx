@@ -101,7 +101,7 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
           <div className="md:col-span-5 space-y-1">
             <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
               <Mail className="w-3.5 h-3.5 text-blue-400" />
-              Email nhận báo cáo chi tiết <span className="text-red-400">*</span>
+              Email người nhận báo cáo <span className="text-red-400">*</span>
             </label>
             <input
               type="email"
@@ -113,6 +113,7 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
               }}
               className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
+            <span className="text-[10px] text-blue-300 block">ℹ️ Báo cáo PDF A4 sẽ được tạo và tải trực tiếp về thiết bị của bạn</span>
           </div>
 
           <div className="md:col-span-4 space-y-1">
@@ -140,7 +141,7 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
                 'Đang tạo file PDF...'
               ) : isSubmitted ? (
                 <>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-300" /> Tải Lại PDF
+                  <CheckCircle2 className="w-4 h-4 text-emerald-300" /> Tải Lại PDF Về Máy
                 </>
               ) : (
                 <>
@@ -171,29 +172,29 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
         </div>
       </div>
 
-      {/* Printable Report Canvas (A4 Dimensions simulation) */}
+      {/* Printable Report Canvas (Strict Single-Page A4 Dimension) */}
       <div
         id="pdf-report-content"
-        className="bg-white text-slate-900 p-8 sm:p-12 max-w-4xl w-full rounded-2xl shadow-xl border border-slate-200 space-y-8 print:p-0 print:border-none print:shadow-none"
+        className="bg-white text-slate-900 p-6 sm:p-7 max-w-4xl w-full rounded-2xl shadow-xl border border-slate-200 space-y-3.5 print:p-0 print:border-none print:shadow-none"
       >
         {/* Header Branding */}
-        <div className="border-b-2 border-slate-900 pb-4 flex items-center justify-between">
+        <div className="border-b border-slate-800 pb-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
               src="/logo-lamsep.jpg" 
               alt="LamSep Logo" 
-              className="w-12 h-12 rounded-xl object-contain bg-white p-1 border border-slate-200 shadow-sm flex-shrink-0" 
+              className="w-10 h-10 rounded-xl object-contain bg-white p-0.5 border border-slate-200 shadow-sm flex-shrink-0" 
             />
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                BÁO CÁO CHẨN ĐOÁN NĂNG LỰC THỰC THI SME
+              <h1 className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
+                BÁO CÁO ĐÁNH GIÁ NĂNG LỰC THỰC THI SME
               </h1>
-              <p className="text-xs text-slate-600 font-medium mt-1">
+              <p className="text-[11px] text-slate-600 font-medium">
                 Khung Quản trị PSO (People - Strategy - Operations) & Khung Chuyển đổi KUBA®
               </p>
             </div>
           </div>
-          <div className="text-right text-xs text-slate-500">
+          <div className="text-right text-[11px] text-slate-500">
             <span className="font-bold text-slate-800 block">LamSep Consulting Group</span>
             <span>Ngày đánh giá: {new Date().toLocaleDateString('vi-VN')}</span>
           </div>
@@ -201,75 +202,75 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
 
         {/* Profile Details */}
         {profile && (
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
             <div>
-              <span className="text-slate-500 block">Người khảo sát:</span>
+              <span className="text-slate-500 block text-[10px]">Người làm khảo sát:</span>
               <strong className="text-slate-800">{profile.fullName || 'Doanh chủ SME'}</strong>
               {email && <span className="block text-[10px] text-slate-500 truncate">{email}</span>}
             </div>
             <div>
-              <span className="text-slate-500 block">Chức vụ / Bộ phận:</span>
+              <span className="text-slate-500 block text-[10px]">Chức vụ / Bộ phận:</span>
               <strong className="text-slate-800">{profile.role} ({profile.department})</strong>
             </div>
             <div>
-              <span className="text-slate-500 block">Doanh nghiệp / Ngành:</span>
+              <span className="text-slate-500 block text-[10px]">Doanh nghiệp / Ngành:</span>
               <strong className="text-slate-800">{profile.companyName || 'Công ty SME'} ({profile.industry})</strong>
             </div>
             <div>
-              <span className="text-slate-500 block">Quy mô / Doanh thu:</span>
+              <span className="text-slate-500 block text-[10px]">Quy mô / Doanh thu:</span>
               <strong className="text-slate-800">{profile.companySize} ({profile.annualRevenue})</strong>
             </div>
           </div>
         )}
 
         {/* Section 1: Overall Results & Radar Chart */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
           {/* Radar Chart */}
-          <div className="flex flex-col items-center">
+          <div className="md:col-span-5 flex flex-col items-center justify-center">
             <HexagonRadarChart
               pillarResults={orderedPillarResults}
               bottleneckPillarId={bottleneckPillar?.pillarId}
               bottleneckClusterIds={bottleneckCluster.map(p => p.pillarId)}
-              size={320}
+              size={240}
             />
           </div>
 
-          {/* Maturity Summary Card */}
-          <div className="space-y-4">
-            <div className="bg-blue-50/70 p-4 rounded-xl border border-blue-200">
-              <span className="text-[11px] font-bold text-blue-900 uppercase tracking-wider block">
+          {/* Maturity Summary Card & Pillar Breakdown Table */}
+          <div className="md:col-span-7 space-y-2.5">
+            <div className="bg-blue-50/70 p-3 rounded-lg border border-blue-200">
+              <span className="text-[10px] font-bold text-blue-900 uppercase tracking-wider block">
                 Kết quả Đánh giá Tổng thể
               </span>
-              <h3 className="text-xl font-black text-blue-950 mt-0.5">
+              <h3 className="text-base font-black text-blue-950 mt-0.5">
                 {maturityLevel.name}
               </h3>
-              <div className="flex items-baseline gap-2 mt-2">
-                <span className="text-3xl font-black text-blue-600">{overallPercent}%</span>
-                <span className="text-xs text-slate-500">
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="text-2xl font-black text-blue-600">{overallPercent}%</span>
+                <span className="text-[11px] text-slate-500">
                   ({overallRawScore === null ? 'Điểm: N/A — không quy đổi khi có N/A' : `Điểm đạt được: ${overallRawScore}/300 điểm`})
                 </span>
               </div>
-              <p className="text-xs text-slate-700 mt-2 leading-relaxed">
+              <p className="text-[11px] text-slate-700 mt-1 leading-snug">
                 {maturityLevel.description}
               </p>
             </div>
 
             {/* Pillar Breakdown Table */}
-            <div className="border border-slate-200 rounded-xl overflow-hidden text-xs">
+            <div className="border border-slate-200 rounded-lg overflow-hidden text-[11px]">
               <table className="w-full text-left">
                 <thead className="bg-slate-100 text-slate-700 font-bold border-b">
                   <tr>
-                    <th className="p-2">Trụ cột Thực thi</th>
-                    <th className="p-2 text-center">Hợp lệ</th>
-                    <th className="p-2 text-right">Điểm (%)</th>
+                    <th className="py-1 px-2">Trụ cột Thực thi</th>
+                    <th className="py-1 px-2 text-center">Hợp lệ</th>
+                    <th className="py-1 px-2 text-right">Điểm (%)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {orderedPillarResults.map(p => (
                     <tr key={p.pillarId} className={p.pillarId === bottleneckPillar?.pillarId ? 'bg-red-50/60 font-semibold text-red-900' : ''}>
-                      <td className="p-2">{p.pillarIndex}. {p.pillarName}</td>
-                      <td className="p-2 text-center">{p.totalValid}/10</td>
-                      <td className="p-2 text-right font-bold">{p.scorePercent}%</td>
+                      <td className="py-1 px-2">{p.pillarIndex}. {p.pillarName}</td>
+                      <td className="py-1 px-2 text-center">{p.totalValid}/10</td>
+                      <td className="py-1 px-2 text-right font-bold">{p.scorePercent}%</td>
                     </tr>
                   ))}
                 </tbody>
@@ -280,55 +281,55 @@ export const PDFExportView: React.FC<PDFExportViewProps> = ({
 
         {/* Section 2: Bottleneck Analysis */}
         {bottleneckPillar && (
-          <div className="bg-red-50/70 p-4 rounded-xl border border-red-200 space-y-2 text-xs">
-            <h4 className="font-bold text-red-900 text-sm flex items-center gap-1.5">
+          <div className="bg-red-50/70 p-2.5 rounded-lg border border-red-200 space-y-1 text-[11px]">
+            <h4 className="font-bold text-red-900 text-xs flex items-center gap-1.5">
               ⚠️ Điểm Nghẽn Trọng Yếu (Thanh Gỗ Ngắn Nhất Liebig): {bottleneckPillar.pillarName} ({bottleneckPillar.scorePercent}%)
             </h4>
-            <p className="text-slate-700 leading-relaxed">
+            <p className="text-slate-700 leading-snug">
               Theo nguyên lý thùng gỗ Liebig, giới hạn năng lực thực thi của toàn doanh nghiệp bị kéo tụt bởi điểm nghẽn tại <strong>{bottleneckPillar.pillarName}</strong>. Cần dành 80% nguồn lực ưu tiên tháo gỡ điểm nghẽn này trong kế hoạch 90 ngày.
             </p>
             {bottleneckCluster.length > 1 && (
-              <p className="text-amber-900 font-medium">
+              <p className="text-amber-900 font-medium text-[10px]">
                 * Nhóm suýt soát cần xử lý đồng thời: {bottleneckCluster.map(p => `${p.pillarName} (${p.scorePercent}%)`).join(', ')}.
               </p>
             )}
           </div>
         )}
 
-        {/* Section 3: KUBA Action Recommendations */}
-        <div className="border border-slate-200 p-4 rounded-xl space-y-3 text-xs bg-slate-50">
-          <h4 className="font-bold text-slate-900 text-sm">
+        {/* Section 3: KUBA Action Recommendations (Đã bỏ dòng nghiệm thu 90 ngày) */}
+        <div className="border border-slate-200 p-2.5 rounded-lg space-y-2 text-[11px] bg-slate-50">
+          <h4 className="font-bold text-slate-900 text-xs">
             Lộ Trình Hành Động 2 Chiều Theo Mô Hình KUBA® Change Commitment
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-white p-3 rounded-lg border border-slate-200">
-              <strong className="text-blue-900 block mb-1">Hành động Lãnh đạo (Leader Action):</strong>
-              <p className="text-slate-700 leading-relaxed">{kubaUnderstand.leaderActionDescription}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="bg-white p-2 rounded-lg border border-slate-200">
+              <strong className="text-blue-900 block mb-0.5 text-[11px]">Hành động Lãnh đạo (Leader Action):</strong>
+              <p className="text-slate-700 leading-snug text-[10.5px]">{kubaUnderstand.leaderActionDescription}</p>
             </div>
-            <div className="bg-white p-3 rounded-lg border border-slate-200">
-              <strong className="text-emerald-900 block mb-1">Hành vi Nhân sự (Individual Action):</strong>
-              <p className="text-slate-700 leading-relaxed">{kubaUnderstand.individualActionDescription}</p>
+            <div className="bg-white p-2 rounded-lg border border-slate-200">
+              <strong className="text-emerald-900 block mb-0.5 text-[11px]">Hành vi Nhân sự (Individual Action):</strong>
+              <p className="text-slate-700 leading-snug text-[10.5px]">{kubaUnderstand.individualActionDescription}</p>
             </div>
-          </div>
-          <div className="text-slate-600 bg-white p-2.5 rounded-lg border border-slate-200">
-            <strong>Bằng chứng nghiệm thu 90 ngày: </strong>{kubaUnderstand.acceptanceEvidenceProposal}
           </div>
         </div>
 
         {/* Section 4: Direct Consultation Hotline */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 p-4 rounded-xl text-xs space-y-1.5">
-          <h4 className="font-bold text-blue-950 text-sm flex items-center gap-2">
-            📞 Khảo Sát Chi Tiết & Tư Vấn Trực Tiếp Tại Doanh Nghiệp
-          </h4>
-          <p className="text-slate-700 leading-relaxed">
-            Nếu Quý khách có bất kỳ thắc mắc gì về kết quả khảo sát, hoặc muốn chuyên gia đến khảo sát chi tiết, tư vấn trực tiếp tại Doanh nghiệp, hãy liên hệ với chúng tôi qua số điện thoại: <strong className="text-blue-700 text-sm">0913989172 (Mr. Duy)</strong>.
-          </p>
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-2.5 rounded-lg text-[11px] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <span className="font-bold text-blue-950 block">📞 Khảo Sát Chi Tiết & Tư Vấn Trực Tiếp Tại Doanh Nghiệp:</span>
+            <span className="text-slate-600 text-[10.5px]">Nếu Quý khách có thắc mắc hoặc cần chuyên gia đến tư vấn trực tiếp, hãy liên hệ ngay với chúng tôi.</span>
+          </div>
+          <div className="shrink-0">
+            <span className="inline-block px-3 py-1 rounded-md bg-blue-600 text-white text-xs font-bold shadow-xs">
+              Hotline: 0913989172 (Mr. Duy)
+            </span>
+          </div>
         </div>
 
         {/* Footer */}
-        <div className="border-t border-slate-200 pt-3 flex items-center justify-between text-[10px] text-slate-400">
+        <div className="border-t border-slate-200 pt-2 flex items-center justify-between text-[10px] text-slate-400">
           <span>© 2026 Hoàng Vũ & LamSep Consulting Group. All rights reserved.</span>
-          <span>Báo cáo chẩn đoán năng lực thực thi SME LamSep</span>
+          <span>LamSep — Bộ Công Cụ Đánh Giá Năng Lực Thực Thi SME</span>
         </div>
       </div>
     </div>

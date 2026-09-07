@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-bold text-lg tracking-tight text-white sm:text-xl">
-                LamSep <span className="text-blue-400 font-medium text-sm sm:text-base">— Khảo sát Thực thi SME</span>
+                LamSep <span className="text-blue-400 font-medium text-sm sm:text-base">— Đánh Giá Năng Lực Thực Thi SME</span>
               </h1>
               <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
                 <ShieldCheck className="w-3.5 h-3.5" /> Client-Only Privacy
