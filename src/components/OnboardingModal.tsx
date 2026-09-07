@@ -42,25 +42,26 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-start sm:justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full my-4 sm:my-8 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[92vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 p-6 text-white">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-blue-600/30 border border-blue-400/30 text-blue-300">
-              <Building2 className="w-6 h-6" />
+        <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 p-4 sm:p-6 text-white shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-blue-600/30 border border-blue-400/30 text-blue-300 shrink-0">
+              <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold">Thông Tin Đơn Vị & Người Làm Khảo Sát</h2>
-              <p className="text-xs text-blue-200">
+              <h2 className="text-base sm:text-xl font-bold">Thông Tin Đơn Vị & Người Làm Khảo Sát</h2>
+              <p className="text-[11px] sm:text-xs text-blue-200">
                 Phục vụ cá nhân hóa báo cáo tư vấn và phân tích đối chuẩn thực thi SME
               </p>
             </div>
           </div>
         </div>
 
-        {/* Modal Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        {/* Modal Body & Sticky Footer */}
+        <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 overscroll-contain">
           {/* Section 1: Thông tin người làm khảo sát */}
           <div>
             <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2 mb-3 border-b pb-2">
@@ -230,18 +231,28 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
               <span className="font-semibold text-slate-800">Cam kết bảo mật:</span> Dữ liệu được xử lý 100% cục bộ trên trình duyệt của bạn (Zero Server Egress). Tôi đồng ý sử dụng dữ liệu này để xuất báo cáo tư vấn thực thi.
             </label>
           </div>
+        </div>
 
-          {/* Submit Button */}
-          <div className="flex items-center justify-end gap-3 pt-2">
-            <button
-              type="submit"
-              disabled={!isProfileComplete}
-              className="px-6 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white shadow-md transition-colors flex items-center gap-2"
-            >
-              <CheckCircle2 className="w-4 h-4" /> Bắt đầu làm Khảo sát
-            </button>
+        {/* Modal Sticky Footer - Always visible on screen */}
+        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-[11px] text-slate-500 text-center sm:text-left">
+            {isProfileComplete ? (
+              <span className="text-emerald-600 font-semibold flex items-center gap-1">
+                ✓ Đã hoàn tất thông tin, bạn có thể bắt đầu!
+              </span>
+            ) : (
+              <span>* Vui lòng điền đủ các mục có dấu (*) và tích đồng ý cam kết bảo mật</span>
+            )}
           </div>
-        </form>
+          <button
+            type="submit"
+            disabled={!isProfileComplete}
+            className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white shadow-md transition-colors flex items-center justify-center gap-2"
+          >
+            <CheckCircle2 className="w-4 h-4" /> Bắt đầu làm Khảo sát
+          </button>
+        </div>
+      </form>
       </div>
     </div>
   );
